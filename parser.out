@@ -1,0 +1,266 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> init
+Rule 1     init -> E
+Rule 2     E -> E mas E
+Rule 3     E -> E menos E
+Rule 4     E -> E por E
+Rule 5     E -> E div E
+Rule 6     E -> pa_abierto E pa_cerrado
+Rule 7     E -> entero
+
+Terminals, with rules where they appear
+
+div                  : 5
+entero               : 7
+error                : 
+mas                  : 2
+menos                : 3
+pa_abierto           : 6
+pa_cerrado           : 6
+por                  : 4
+
+Nonterminals, with rules where they appear
+
+E                    : 1 2 2 3 3 4 4 5 5 6
+init                 : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . init
+    (1) init -> . E
+    (2) E -> . E mas E
+    (3) E -> . E menos E
+    (4) E -> . E por E
+    (5) E -> . E div E
+    (6) E -> . pa_abierto E pa_cerrado
+    (7) E -> . entero
+
+    pa_abierto      shift and go to state 3
+    entero          shift and go to state 4
+
+    init                           shift and go to state 1
+    E                              shift and go to state 2
+
+state 1
+
+    (0) S' -> init .
+
+
+
+state 2
+
+    (1) init -> E .
+    (2) E -> E . mas E
+    (3) E -> E . menos E
+    (4) E -> E . por E
+    (5) E -> E . div E
+
+    $end            reduce using rule 1 (init -> E .)
+    mas             shift and go to state 5
+    menos           shift and go to state 6
+    por             shift and go to state 7
+    div             shift and go to state 8
+
+
+state 3
+
+    (6) E -> pa_abierto . E pa_cerrado
+    (2) E -> . E mas E
+    (3) E -> . E menos E
+    (4) E -> . E por E
+    (5) E -> . E div E
+    (6) E -> . pa_abierto E pa_cerrado
+    (7) E -> . entero
+
+    pa_abierto      shift and go to state 3
+    entero          shift and go to state 4
+
+    E                              shift and go to state 9
+
+state 4
+
+    (7) E -> entero .
+
+    mas             reduce using rule 7 (E -> entero .)
+    menos           reduce using rule 7 (E -> entero .)
+    por             reduce using rule 7 (E -> entero .)
+    div             reduce using rule 7 (E -> entero .)
+    $end            reduce using rule 7 (E -> entero .)
+    pa_cerrado      reduce using rule 7 (E -> entero .)
+
+
+state 5
+
+    (2) E -> E mas . E
+    (2) E -> . E mas E
+    (3) E -> . E menos E
+    (4) E -> . E por E
+    (5) E -> . E div E
+    (6) E -> . pa_abierto E pa_cerrado
+    (7) E -> . entero
+
+    pa_abierto      shift and go to state 3
+    entero          shift and go to state 4
+
+    E                              shift and go to state 10
+
+state 6
+
+    (3) E -> E menos . E
+    (2) E -> . E mas E
+    (3) E -> . E menos E
+    (4) E -> . E por E
+    (5) E -> . E div E
+    (6) E -> . pa_abierto E pa_cerrado
+    (7) E -> . entero
+
+    pa_abierto      shift and go to state 3
+    entero          shift and go to state 4
+
+    E                              shift and go to state 11
+
+state 7
+
+    (4) E -> E por . E
+    (2) E -> . E mas E
+    (3) E -> . E menos E
+    (4) E -> . E por E
+    (5) E -> . E div E
+    (6) E -> . pa_abierto E pa_cerrado
+    (7) E -> . entero
+
+    pa_abierto      shift and go to state 3
+    entero          shift and go to state 4
+
+    E                              shift and go to state 12
+
+state 8
+
+    (5) E -> E div . E
+    (2) E -> . E mas E
+    (3) E -> . E menos E
+    (4) E -> . E por E
+    (5) E -> . E div E
+    (6) E -> . pa_abierto E pa_cerrado
+    (7) E -> . entero
+
+    pa_abierto      shift and go to state 3
+    entero          shift and go to state 4
+
+    E                              shift and go to state 13
+
+state 9
+
+    (6) E -> pa_abierto E . pa_cerrado
+    (2) E -> E . mas E
+    (3) E -> E . menos E
+    (4) E -> E . por E
+    (5) E -> E . div E
+
+    pa_cerrado      shift and go to state 14
+    mas             shift and go to state 5
+    menos           shift and go to state 6
+    por             shift and go to state 7
+    div             shift and go to state 8
+
+
+state 10
+
+    (2) E -> E mas E .
+    (2) E -> E . mas E
+    (3) E -> E . menos E
+    (4) E -> E . por E
+    (5) E -> E . div E
+
+    mas             reduce using rule 2 (E -> E mas E .)
+    menos           reduce using rule 2 (E -> E mas E .)
+    $end            reduce using rule 2 (E -> E mas E .)
+    pa_cerrado      reduce using rule 2 (E -> E mas E .)
+    por             shift and go to state 7
+    div             shift and go to state 8
+
+  ! por             [ reduce using rule 2 (E -> E mas E .) ]
+  ! div             [ reduce using rule 2 (E -> E mas E .) ]
+  ! mas             [ shift and go to state 5 ]
+  ! menos           [ shift and go to state 6 ]
+
+
+state 11
+
+    (3) E -> E menos E .
+    (2) E -> E . mas E
+    (3) E -> E . menos E
+    (4) E -> E . por E
+    (5) E -> E . div E
+
+    mas             reduce using rule 3 (E -> E menos E .)
+    menos           reduce using rule 3 (E -> E menos E .)
+    $end            reduce using rule 3 (E -> E menos E .)
+    pa_cerrado      reduce using rule 3 (E -> E menos E .)
+    por             shift and go to state 7
+    div             shift and go to state 8
+
+  ! por             [ reduce using rule 3 (E -> E menos E .) ]
+  ! div             [ reduce using rule 3 (E -> E menos E .) ]
+  ! mas             [ shift and go to state 5 ]
+  ! menos           [ shift and go to state 6 ]
+
+
+state 12
+
+    (4) E -> E por E .
+    (2) E -> E . mas E
+    (3) E -> E . menos E
+    (4) E -> E . por E
+    (5) E -> E . div E
+
+    mas             reduce using rule 4 (E -> E por E .)
+    menos           reduce using rule 4 (E -> E por E .)
+    por             reduce using rule 4 (E -> E por E .)
+    div             reduce using rule 4 (E -> E por E .)
+    $end            reduce using rule 4 (E -> E por E .)
+    pa_cerrado      reduce using rule 4 (E -> E por E .)
+
+  ! mas             [ shift and go to state 5 ]
+  ! menos           [ shift and go to state 6 ]
+  ! por             [ shift and go to state 7 ]
+  ! div             [ shift and go to state 8 ]
+
+
+state 13
+
+    (5) E -> E div E .
+    (2) E -> E . mas E
+    (3) E -> E . menos E
+    (4) E -> E . por E
+    (5) E -> E . div E
+
+    mas             reduce using rule 5 (E -> E div E .)
+    menos           reduce using rule 5 (E -> E div E .)
+    por             reduce using rule 5 (E -> E div E .)
+    div             reduce using rule 5 (E -> E div E .)
+    $end            reduce using rule 5 (E -> E div E .)
+    pa_cerrado      reduce using rule 5 (E -> E div E .)
+
+  ! mas             [ shift and go to state 5 ]
+  ! menos           [ shift and go to state 6 ]
+  ! por             [ shift and go to state 7 ]
+  ! div             [ shift and go to state 8 ]
+
+
+state 14
+
+    (6) E -> pa_abierto E pa_cerrado .
+
+    mas             reduce using rule 6 (E -> pa_abierto E pa_cerrado .)
+    menos           reduce using rule 6 (E -> pa_abierto E pa_cerrado .)
+    por             reduce using rule 6 (E -> pa_abierto E pa_cerrado .)
+    div             reduce using rule 6 (E -> pa_abierto E pa_cerrado .)
+    $end            reduce using rule 6 (E -> pa_abierto E pa_cerrado .)
+    pa_cerrado      reduce using rule 6 (E -> pa_abierto E pa_cerrado .)
+

@@ -1,0 +1,7 @@
+from IDE import * 
+
+iniciar()
+   
+
+
+
